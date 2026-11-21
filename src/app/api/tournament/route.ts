@@ -1,11 +1,8 @@
 import {NextResponse} from "next/server";
 
 export async function GET() {
-    console.log("NEXT API ROUTE: GET tournament active");
-
     try {
       const apiUrl= process.env.API_URL_PUBLIC;
-        console.log({apiUrl})
       if (!apiUrl) {
           throw new Error("API URL PUBLIC is not configured");
       }

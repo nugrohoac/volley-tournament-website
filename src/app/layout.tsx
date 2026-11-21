@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Alam Sari Cup | Volleyball Tournament",
+  title: "Volleyball Tournament",
   description: "Jadwal dan hasil pertandingan turnamen bola voli.",
 };
 

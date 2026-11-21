@@ -14,7 +14,7 @@ async function request<T>(url: string): Promise<T> {
 }
 
 export function getActiveTournament() {
-    return request<Tournament>(`http://localhost:8080/public/tournament/active`);
+    return request<Tournament>("/api/tournament");
 }
 
 export function getMatches(
@@ -26,5 +26,5 @@ export function getMatches(
         date
     });
 
-    return request<MatchResponse>(`http://localhost:8080/public/match?${params.toString()}`);
+    return request<MatchResponse>(`/api/match?${params.toString()}`);
 }

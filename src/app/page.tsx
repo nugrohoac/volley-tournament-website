@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -319,7 +318,7 @@ export default function Home() {
                               <span className="font-bold">
                           {formatTime(match.schedule_at)}
                         </span>
-                              <span className="text-xs text-slate-500">
+                              <span className="inline-flex items-center rounded-md px-3 py-1 text-xs font-bold tracking-wider bg-slate-400/10 text-slate-200 border border-slate-400/20">
                           {match.round_name}
                         </span>
                             </div>
