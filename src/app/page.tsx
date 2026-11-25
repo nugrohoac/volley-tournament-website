@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -151,15 +152,18 @@ export default function Home() {
 
   if (loadingTournament) {
     return (
-        <main className="flex min-h-screen items-center justify-center bg-[#050d20] text-white">
-          <LoaderCircle className="animate-spin text-orange-500" size={32} />
+        <main className="flex min-h-screen items-center justify-center bg-[#F3F0E8] text-[#17251F]">
+          <LoaderCircle
+              className="animate-spin text-[#D96B3B]"
+              size={32}
+          />
         </main>
     );
   }
 
   if (!tournament) {
     return (
-        <main className="flex min-h-screen items-center justify-center bg-[#050d20] p-6 text-white">
+        <main className="flex min-h-screen items-center justify-center bg-[#F3F0E8] p-6 text-[#17251F]">
           <p>{error || "Turnamen tidak tersedia."}</p>
         </main>
     );
@@ -171,60 +175,89 @@ export default function Home() {
   );
 
   return (
-      <main className="min-h-screen bg-[#050d20] text-white">
-        <div className="mx-auto max-w-5xl px-4 py-6 sm:px-6">
+      <main className="min-h-screen bg-[#F3F0E8] text-[#17251F]">
 
-          {/* Tournament Header */}
-          <header className="mb-10 flex items-center gap-4">
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-blue-400/30 bg-blue-500/10">
-              <Volleyball className="text-orange-400" size={34} />
+        {/* Header */}
+        <header className="bg-[#17251F] text-[#F3F0E8]">
+          <div className="mx-auto flex max-w-5xl items-center gap-4 px-4 py-5 sm:px-6">
+
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#F3F0E8]/30 bg-white/5">
+              <Volleyball className="text-[#D6A84B]" size={28} />
             </div>
 
-            <div className="min-w-0 flex-1">
-              <h1 className="truncate text-lg font-black uppercase tracking-wider sm:text-2xl">
+            <div className="min-w-0">
+              <h1 className="truncate text-lg font-black uppercase tracking-wide sm:text-2xl">
                 {tournament.name}
               </h1>
 
-              <p className="text-xs tracking-widest text-blue-300 sm:text-sm">
+              <p className="text-xs tracking-[0.2em] text-[#C5C9BD] sm:text-sm">
                 VOLLEYBALL TOURNAMENT
               </p>
             </div>
-          </header>
+
+          </div>
+        </header>
+
+        <div className="mx-auto max-w-5xl px-4 py-6 sm:px-6">
 
           {/* Tournament Information */}
-          <section className="relative mb-10 overflow-hidden rounded-2xl border border-blue-500/30 bg-gradient-to-br from-blue-950 to-[#071225] p-6 sm:p-8">
-            <div className="absolute -right-10 -top-10 h-48 w-48 rounded-full bg-blue-500/10 blur-3xl" />
+          <section className="relative mb-10 overflow-hidden rounded-2xl bg-[#17251F] p-6 text-[#F3F0E8] sm:p-9">
 
-            <p className="mb-2 text-sm font-bold uppercase tracking-[0.3em] text-orange-400">
-              Tournament
-            </p>
+            <div className="absolute -right-8 -top-8 opacity-[0.06]">
+              <Volleyball size={220} />
+            </div>
 
-            <h2 className="relative mb-5 max-w-2xl text-3xl font-black uppercase sm:text-5xl">
-              {tournament.name}
-            </h2>
+            <div className="relative">
+              <p className="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-[#E99A70]">
+                Turnamen Voli
+              </p>
 
-            <div className="flex flex-col gap-3 text-sm text-blue-200 sm:flex-row sm:gap-6">
-              <div className="flex items-center gap-2">
-                <CalendarDays size={17} className="text-orange-400" />
-                {formatDate(toDateKey(tournament.start_date))}
-                {" - "}
-                {formatDate(toDateKey(tournament.end_date))}
-              </div>
+              <h2 className="mb-6 max-w-2xl text-3xl font-black uppercase leading-tight sm:text-5xl">
+                {tournament.name}
+              </h2>
 
-              <div className="flex items-center gap-2">
-                <MapPin size={17} className="text-orange-400" />
-                {tournament.location}
+              {tournament.description && (
+                  <p className="mb-6 max-w-2xl text-sm leading-relaxed text-[#D5D8CE] sm:text-base">
+                    {tournament.description}
+                  </p>
+              )}
+
+              <div className="flex flex-col gap-4 text-sm text-[#E5E7DF] sm:flex-row sm:gap-8">
+
+                <div className="flex items-center gap-2">
+                  <CalendarDays
+                      size={18}
+                      className="shrink-0 text-[#E99A70]"
+                  />
+
+                  <span>
+                  {formatDate(toDateKey(tournament.start_date))}
+                    {" - "}
+                    {formatDate(toDateKey(tournament.end_date))}
+                </span>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <MapPin
+                      size={18}
+                      className="shrink-0 text-[#E99A70]"
+                  />
+
+                  <span>{tournament.location}</span>
+                </div>
+
               </div>
             </div>
           </section>
 
           {/* Match Schedule */}
           <section>
-            <div className="mb-5 flex items-center gap-3">
-              <div className="h-8 w-1 rounded-full bg-orange-500" />
 
-              <h2 className="text-2xl font-black uppercase italic tracking-wide">
-                Match <span className="text-orange-500">Schedule</span>
+            <div className="mb-6 flex items-center gap-3">
+              <div className="h-8 w-1 rounded-full bg-[#D96B3B]" />
+
+              <h2 className="text-2xl font-black uppercase tracking-wide">
+                Jadwal <span className="text-[#D96B3B]">Pertandingan</span>
               </h2>
             </div>
 
@@ -251,20 +284,23 @@ export default function Home() {
                         onClick={() => setSelectedDate(date)}
                         className={`min-w-24 rounded-xl border px-5 py-3 transition ${
                             active
-                                ? "border-orange-400 bg-orange-500/15 text-orange-400 shadow-[0_0_18px_rgba(249,115,22,0.2)]"
-                                : "border-blue-900 bg-[#0a1730] text-blue-200 hover:border-blue-500"
+                                ? "border-[#D96B3B] bg-[#D96B3B] text-white shadow-sm"
+                                : "border-[#E5E1D7] bg-white text-[#555B4E] hover:border-[#D96B3B]"
                         }`}
                     >
                   <span className="block text-lg font-bold">
                     {number}
                   </span>
-                      <span className="text-xs uppercase">{day}</span>
+
+                      <span className="text-xs uppercase">
+                    {day}
+                  </span>
                     </button>
                 );
               })}
             </div>
 
-            <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-blue-300">
+            <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-[#777B70]">
               {formatDate(selectedDate)}
             </h3>
 
@@ -272,7 +308,7 @@ export default function Home() {
             {loadingMatches && (
                 <div className="flex justify-center py-16">
                   <LoaderCircle
-                      className="animate-spin text-orange-500"
+                      className="animate-spin text-[#D96B3B]"
                       size={32}
                   />
                 </div>
@@ -280,20 +316,24 @@ export default function Home() {
 
             {/* Error */}
             {!loadingMatches && error && (
-                <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-5 text-sm text-red-300">
+                <div className="rounded-xl border border-red-200 bg-red-50 p-5 text-sm text-red-700">
                   {error}
                 </div>
             )}
 
             {/* Empty State */}
             {!loadingMatches && !error && matches.length === 0 && (
-                <div className="rounded-xl border border-blue-900 bg-[#0a1730] py-16 text-center">
+                <div className="rounded-xl border border-[#E5E1D7] bg-white py-16 text-center">
                   <CalendarDays
-                      className="mx-auto mb-3 text-blue-400"
+                      className="mx-auto mb-3 text-[#D96B3B]"
                       size={36}
                   />
-                  <p className="font-bold">Belum ada pertandingan</p>
-                  <p className="mt-1 text-sm text-slate-400">
+
+                  <p className="font-bold text-[#17251F]">
+                    Belum ada pertandingan
+                  </p>
+
+                  <p className="mt-1 text-sm text-[#777B70]">
                     Tidak ada jadwal pertandingan pada tanggal ini.
                   </p>
                 </div>
@@ -309,102 +349,139 @@ export default function Home() {
                     return (
                         <article
                             key={match.id}
-                            className="overflow-hidden rounded-xl border border-blue-900/80 bg-gradient-to-r from-[#0b1931] to-[#081326] transition hover:border-blue-500/70"
+                            className="overflow-hidden rounded-xl border border-[#E5E1D7] bg-white transition hover:border-[#D6A84B]"
                         >
+
                           {/* Match Info */}
-                          <div className="flex items-center justify-between border-b border-blue-900/70 px-4 py-3 sm:px-6">
-                            <div className="flex items-center gap-2 text-sm text-blue-200">
-                              <Clock size={17} />
+                          <div className="flex items-center justify-between border-b border-[#E5E1D7] px-4 py-3 sm:px-6">
+
+                            <div className="flex flex-wrap items-center gap-2 text-sm text-[#555B4E]">
+                              <Clock size={16} className="text-[#777B70]" />
+
                               <span className="font-bold">
                           {formatTime(match.schedule_at)}
                         </span>
-                              <span className="inline-flex items-center rounded-md px-3 py-1 text-xs font-bold tracking-wider bg-slate-400/10 text-slate-200 border border-slate-400/20">
-                          {match.round_name}
+
+                              <span className="inline-flex items-center rounded-md border border-[#E5E1D7] bg-[#F3F0E8] px-3 py-1 text-xs font-bold tracking-wider text-[#555B4E]">
+                          {match.round_name.replace("_", " ")}
                         </span>
                             </div>
 
                             <span
                                 className={`rounded-full px-3 py-1 text-xs font-bold ${
                                     done
-                                        ? "bg-emerald-500/10 text-emerald-400"
-                                        : "bg-blue-500/10 text-blue-300"
+                                        ? "bg-[#E5EFE7] text-[#28613D]"
+                                        : "bg-[#FBE9DE] text-[#B9572E]"
                                 }`}
                             >
                         {done ? "FINISHED" : match.status}
                       </span>
+
                           </div>
 
                           {/* Match Score */}
-                          <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2 px-3 py-6 sm:gap-6 sm:px-6">
+                          <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2 px-3 py-7 sm:gap-6 sm:px-6">
+
                             {/* First Team */}
                             <div className="min-w-0 text-center">
-                              <p className={`truncate text-sm font-bold sm:text-lg ${
-                                  winner === "first" ? "text-orange-400" : "text-white"
-                              }`}>
+                              <p
+                                  className={`truncate text-sm font-bold sm:text-lg ${
+                                      winner === "first"
+                                          ? "text-[#D96B3B]"
+                                          : "text-[#17251F]"
+                                  }`}
+                              >
                                 {match.first_team.name}
                               </p>
-                              <p className="mt-1 text-xs text-slate-500">
+
+                              <p className="mt-1 text-xs text-[#777B70]">
                                 {match.first_team.neighborhood}
                               </p>
+
                               {winner === "first" && (
-                                  <span className="mt-2 inline-flex items-center gap-1 text-[10px] font-bold text-orange-400">
-                            <Trophy size={12} /> WINNER
+                                  <span className="mt-2 inline-flex items-center gap-1 text-[10px] font-bold text-[#D96B3B]">
+                            <Trophy size={12} />
+                            WINNER
                           </span>
                               )}
                             </div>
 
                             {/* Score */}
-                            <div className="flex items-center gap-3 border-x border-blue-900 px-3 sm:gap-5 sm:px-6">
+                            <div className="flex items-center gap-3 border-x border-[#E5E1D7] px-3 text-[#17251F] sm:gap-5 sm:px-6">
+
                         <span className="text-3xl font-black sm:text-5xl">
                           {done
                               ? match.first_team_sets_won ?? 0
                               : "-"}
                         </span>
-                              <span className="text-xl text-blue-500">:</span>
+
+                              <span className="text-xl text-[#D96B3B]">
+                          :
+                        </span>
+
                               <span className="text-3xl font-black sm:text-5xl">
                           {done
                               ? match.second_team_sets_won ?? 0
                               : "-"}
                         </span>
+
                             </div>
 
                             {/* Second Team */}
                             <div className="min-w-0 text-center">
-                              <p className={`truncate text-sm font-bold sm:text-lg ${
-                                  winner === "second" ? "text-orange-400" : "text-white"
-                              }`}>
+                              <p
+                                  className={`truncate text-sm font-bold sm:text-lg ${
+                                      winner === "second"
+                                          ? "text-[#D96B3B]"
+                                          : "text-[#17251F]"
+                                  }`}
+                              >
                                 {match.second_team.name}
                               </p>
-                              <p className="mt-1 text-xs text-slate-500">
+
+                              <p className="mt-1 text-xs text-[#777B70]">
                                 {match.second_team.neighborhood}
                               </p>
+
                               {winner === "second" && (
-                                  <span className="mt-2 inline-flex items-center gap-1 text-[10px] font-bold text-orange-400">
-                            <Trophy size={12} /> WINNER
+                                  <span className="mt-2 inline-flex items-center gap-1 text-[10px] font-bold text-[#D96B3B]">
+                            <Trophy size={12} />
+                            WINNER
                           </span>
                               )}
                             </div>
+
                           </div>
 
                           {/* Match Footer */}
-                          <div className="flex flex-wrap justify-between gap-2 border-t border-blue-900/50 px-4 py-3 text-xs text-slate-400 sm:px-6">
+                          <div className="flex flex-wrap justify-between gap-2 border-t border-[#E5E1D7] bg-[#FAF9F5] px-4 py-3 text-xs text-[#777B70] sm:px-6">
+
                       <span>
                         {match.best_of_sets} SETS
                       </span>
+
                             <span>
-                        Referee: {match.referee_name || "-"}
+                        Wasit: {match.referee_name || "-"}
                       </span>
+
                           </div>
+
                         </article>
                     );
                   })}
                 </div>
             )}
+
           </section>
 
-          <footer className="mt-12 border-t border-blue-900/50 py-6 text-center text-xs tracking-wider text-slate-500">
+          {/* Footer */}
+          <footer className="mt-12 border-t border-[#E5E1D7] py-6 text-center text-xs tracking-wider text-[#777B70]">
             {tournament.name} · VOLLEYBALL TOURNAMENT
+            <p className="mt-2 text-[#D96B3B]">
+              Bersatu dalam olahraga, meraih kemenangan bersama.
+            </p>
           </footer>
+
         </div>
       </main>
   );
